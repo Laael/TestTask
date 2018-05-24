@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+        xmlns="http://xamarin.com/schemas/2014/forms" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+        xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" 
+        prism:ViewModelLocator.AutowireViewModel="True" 
+        x:Class="TestTask.Views.VersionsView"
+        Title="{Binding Title}"
+        >
+        <ContentPage.Padding>
+            <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" />
+        </ContentPage.Padding>  
+        <ContentPage.Content>
+            <ListView 
+                x:Name="lvVersions"
+                ItemsSource="{Binding AndroidVersions}"
+                HasUnevenRows="true">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout
+                                Padding="10, 0"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                Orientation="Horizontal">
+                                <Image 
+                                    Source="{Binding imageURL}"
+                                    HeightRequest="48"
+                                    WidthRequest="48"
+                                    MinimumHeightRequest="48"
+                                    MinimumWidthRequest="48" />
+                                <StackLayout
+                                    Padding="10"
+                                    Orientation="Vertical"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="StartAndExpand"
+                                    >
+                                    <Label 
+                                        Text="{Binding version}"
+                                        LineBreakMode="WordWrap"
+                                        HorizontalOptions="StartAndExpand"
+                                        VerticalOptions="StartAndExpand"
+                                       
+                                    />
+
+                                    
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            </ListView>
+        </ContentPage.Content>
+</ContentPage>
