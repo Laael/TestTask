@@ -13,11 +13,13 @@
   <ItemGroup>
     <Compile Remove="ViewModels\MainPageViewModel.cs" />
     <Compile Remove="Views\MyPage.cs" />
+    <Compile Remove="Rep.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />
     <Folder Include="Model\" />
     <Folder Include="Repository\" />
+    <Folder Include="Factory\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Views\NavigationPage.xaml" />

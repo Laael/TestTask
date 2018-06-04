@@ -12,19 +12,19 @@ namespace TestTask.Repository
 
         public DescriptionRepository()
         {
-            descriptions = DescriptionFactory.GetDescription();
+            descriptions = Factory.DescriptionFactory.GetDescription();
         }
 
         public AndroidVersion GetVersionById(int index)
         {
          
-            return App.Repository.GetItems().SingleOrDefault(x => (x).id == index);
+            return App.Repository.GetItems().SingleOrDefault(x => (x).ID == index);
            
         }
 
         public Description GetDescriptionsByVersion(int versionId)
         {
-            return descriptions.SingleOrDefault(x => x.version.id == versionId);
+            return descriptions.SingleOrDefault(x => x.version.ID == versionId);
         }
     }
 }

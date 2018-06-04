@@ -1,6 +1,4 @@
-﻿using System;
-using Prism.Mvvm;
-using Prism.Navigation;
+﻿using Prism.Navigation;
 
 namespace TestTask.ViewModels
 {

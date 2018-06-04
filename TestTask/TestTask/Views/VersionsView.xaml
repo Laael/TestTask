@@ -25,7 +25,7 @@
                                 VerticalOptions="Center"
                                 Orientation="Horizontal">
                                 <Image 
-                                    Source="{Binding imageURL}"
+                                    Source="{Binding ImageURL}"
                                     HeightRequest="48"
                                     WidthRequest="48"
                                     MinimumHeightRequest="48"
@@ -37,7 +37,7 @@
                                     VerticalOptions="StartAndExpand"
                                     >
                                     <Label 
-                                        Text="{Binding version}"
+                                        Text="{Binding Version}"
                                         LineBreakMode="WordWrap"
                                         HorizontalOptions="StartAndExpand"
                                         VerticalOptions="StartAndExpand"

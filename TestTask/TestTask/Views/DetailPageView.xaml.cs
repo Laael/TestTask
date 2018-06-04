@@ -1,5 +1,4 @@
-﻿using TestTask.Model;
-using TestTask.ViewModels;
+﻿using TestTask.ViewModels;
 
 
 using Xamarin.Forms;

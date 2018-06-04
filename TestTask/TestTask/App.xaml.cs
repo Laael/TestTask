@@ -6,9 +6,6 @@ using Xamarin.Forms;
 using TestTask.Model;
 using Xamarin.Forms.Xaml;
 using Prism.Unity;
-using System.Threading.Tasks;
-using Java.Util.Logging;
-using System;
 
 
 
@@ -20,15 +17,15 @@ namespace TestTask
       
         public App(IPlatformInitializer initializer) : base(initializer) { }
 
-        public const string DATABASE_NAME = "android_versions.db";
-        public static AndroidVersionsRepository database;
-        public static AndroidVersionsRepository Repository
+        public const string DataBaseName = "android_versions.db";
+        private static  AndroidVersionsRepository database;
+        public static  IRepository<AndroidVersion> Repository
         {
-            get
+             get
             {
                 if (database == null)
                 {
-                    database = new AndroidVersionsRepository(DATABASE_NAME);
+                    database = AndroidVersionsRepository.Current;
                 }
                 return database;
             }
@@ -49,6 +46,7 @@ namespace TestTask
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterSingleton<IRepository<AndroidVersion>, AndroidVersionsRepository>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<VersionsView, VersionsViewModel>();
             containerRegistry.RegisterForNavigation<DetailPageView, DetailViewModel>();

@@ -8,28 +8,38 @@ namespace TestTask.ViewModels
     public class BaseViewModel : BindableBase, INavigationAware
     {
 
-        protected readonly INavigationService _navigationService;
+        protected readonly INavigationService navigationService;
 
-        private string _title;
+        private string title;
         public string Title
         {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
+            get 
+            {
+                return title;
+            }
+            set 
+            { 
+                SetProperty(ref title, value);
+            }
         }
 
 
 
-        public DelegateCommand<string> NavCommand { get; set; }
-
-        public BaseViewModel(INavigationService navigationService)
+        DelegateCommand<string> NavCommand 
         {
-            _navigationService = navigationService;
+            get; 
+            set;
+        }
+
+        public BaseViewModel(INavigationService NavigationService)
+        {
+            navigationService = NavigationService;
             NavCommand = new DelegateCommand<string>(Navigate);
         }
 
         private async void Navigate(string name)
         {
-            await _navigationService.NavigateAsync(name);
+            await navigationService.NavigateAsync(name);
         }
 
         public virtual void OnNavigatedFrom(NavigationParameters parameters)

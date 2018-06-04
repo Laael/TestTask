@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Prism.Navigation;
+﻿using Prism.Navigation;
 
 using Xamarin.Forms;
 
@@ -19,7 +17,10 @@ namespace TestTask.Views
 
         public bool ClearNavigationStackOnNavigation 
         {
-            get { return true; }
+            get 
+            {
+                return true;
+            }
         }
 
 

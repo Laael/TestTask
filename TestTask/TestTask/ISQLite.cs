@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 namespace TestTask
 {
     public interface ISQLite

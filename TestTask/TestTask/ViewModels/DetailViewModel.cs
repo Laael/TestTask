@@ -1,14 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Collections.ObjectModel;
-
-using Prism.Commands;
-using Prism.Navigation;
-using Prism.Events;
-
-using Xamarin.Forms;
-using System.Linq;
-
+﻿using Prism.Navigation;
 using TestTask.Model;
 using TestTask.Repository;
 
@@ -16,28 +6,32 @@ namespace TestTask.ViewModels
 {
     public class DetailViewModel : BaseViewModel
     {
-        private readonly DescriptionRepository _descriptionRepository;
+        private readonly DescriptionRepository descriptionRepository;
 
 
-        private AndroidVersion _SelectedVersion;
-        public AndroidVersion SelectedVersion
+        AndroidVersion selectedVersion;
+        AndroidVersion SelectedVersion
         {
-            get { 
-                return _SelectedVersion; }
+            get 
+            { 
+                return selectedVersion;
+            }
             set
             {
-                SetProperty(ref _SelectedVersion, value);
+                SetProperty(ref selectedVersion, value);
             }
         }
 
-        private Description _SelectedDescription;
+        private Description selectedDescription;
         public Description SelectedDescription
         {
-            get { 
-                return _SelectedDescription; }
+            get 
+            { 
+                return selectedDescription; 
+            }
             set
             {
-                SetProperty(ref _SelectedDescription, value);
+                SetProperty(ref selectedDescription, value);
             }
         }
 
@@ -48,11 +42,9 @@ namespace TestTask.ViewModels
 
         public DetailViewModel(
             INavigationService navigationService,
-            DescriptionRepository descriptionRepository
-        )
-            : base(navigationService)
+            DescriptionRepository DescriptionRepository): base(navigationService)
         {
-            _descriptionRepository = descriptionRepository;
+            descriptionRepository = DescriptionRepository;
             Title = "Detail";
         }
 
@@ -71,10 +63,10 @@ namespace TestTask.ViewModels
 
         void LoadDescription(int id)
         {
-            SelectedVersion = _descriptionRepository.GetVersionById(id);
+            SelectedVersion = descriptionRepository.GetVersionById(id);
           
             if(SelectedVersion != null)
-                SelectedDescription = _descriptionRepository.GetDescriptionsByVersion(id);
+                SelectedDescription = descriptionRepository.GetDescriptionsByVersion(id);
 
         }
 

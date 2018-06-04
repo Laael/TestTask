@@ -18,7 +18,7 @@
            
             <Label 
             x:Name="detailtextlabel"
-            Text="{Binding SelectedDescription.text}"
+            Text="{Binding SelectedDescription.Text}"
             LineBreakMode="WordWrap"
             HorizontalOptions="StartAndExpand"
             VerticalOptions="StartAndExpand"

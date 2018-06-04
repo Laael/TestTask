@@ -1,45 +1,44 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using SQLite;
 using TestTask.Model;
-using System.Collections.ObjectModel;
 using Xamarin.Forms;
+using System;
 
 namespace TestTask
 {
-
-    public interface IRepository<T>
-    {
-        void Create(AndroidVersion version);
-        // Насколько я понимаю, тут правильнее использовать void Create(object version);  для того, чтобы интерфейс был более обобщённым
-        void Update(AndroidVersion version);
-        void Delete(int id);
-        AndroidVersion Get(int id);
-        ObservableCollection<AndroidVersion> GetItems();
-    }
-
-
     public class AndroidVersionsRepository : IRepository<AndroidVersion>
     {
-        SQLiteConnection database;
-        public AndroidVersionsRepository(string filename)
+
+        static readonly Lazy<AndroidVersionsRepository> lazy = new Lazy<AndroidVersionsRepository>(() => new AndroidVersionsRepository());
+
+        public static AndroidVersionsRepository Current 
         {
-            string databasePath = DependencyService.Get<ISQLite>().GetDatabasePath(filename);
+            get
+            {
+                return lazy.Value;
+            }
+        }
+
+        SQLiteConnection database;
+        AndroidVersionsRepository()
+        {
+            string databasePath = DependencyService.Get<ISQLite>().GetDatabasePath(App.DataBaseName);
             database = new SQLiteConnection(databasePath);
             database.CreateTable<AndroidVersion>();
            
         }
-        public ObservableCollection<AndroidVersion> GetItems()
+
+        public List<AndroidVersion> GetItems()
         {
            
-            ObservableCollection<AndroidVersion> collection = new ObservableCollection<AndroidVersion>();
+            List<AndroidVersion> collection = new List<AndroidVersion>();
             foreach(var item in database.Table<AndroidVersion>())
             {
                 collection.Add(item);
             }
 
             if(collection.Count == 0)
-                VersionFactory.CreateVersions();
+                Factory.VersionFactory.CreateVersions();
 
             return collection;
 
